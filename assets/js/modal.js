@@ -45,6 +45,7 @@ function closeModal(){
   modalbg.style.display = "none";
 }
 
+//Validation of form
 function validate(){
   let isFirstNameValid = firstNameVerification(),
       isLastNameValid = lastNameVerification(),
@@ -70,11 +71,20 @@ function validate(){
   return false;
 }
 
+// event listener on my fields
 firstName.addEventListener("keyup", firstNameVerification);
+lastName.addEventListener("keyup", lastNameVerification);
+email.addEventListener('keyup', emailVerification);
+quantity.addEventListener('change', quantityVerification);
+checkbox1.addEventListener("change", checkboxVerification);
+birthdate.addEventListener("change", birthdateVerification);
 
+
+// verification of firstname field
 function firstNameVerification(){
   let response;
-  if(!firstName.validity.valid || firstName.value.length < 2){
+  let filter = /^([a-zA\-])+$/;
+  if(!firstName.validity.valid || firstName.value.length < 2 || !filter.test(firstName.value)){
     /* console.log('Veuillez rentrer au moins 2 caractères'); */
     firstNameError.innerHTML = "Veuillez rentrer au moins 2 caractères";
     response = false;
@@ -86,12 +96,12 @@ function firstNameVerification(){
   return response;
 }
 
-lastName.addEventListener("keyup", lastNameVerification);
-
+// verification of lastname field
 function lastNameVerification(){
   let response = false;
+  let filter = /^([a-zA\-])+$/;
   lastNameError.innerHTML = "Veuillez rentrer au moins 2 caractères";
-  if(lastName.value.length >= 2){
+  if(lastName.value.length >= 2 && filter.test(lastName.value)){
     
     lastNameError.innerHTML = "";
     response = lastName.value;
@@ -100,8 +110,7 @@ function lastNameVerification(){
   return response;
 }
 
-email.addEventListener('keyup', emailVerification);
-
+// verification of email field
 function emailVerification(){
   let filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
   let response;
@@ -116,8 +125,7 @@ function emailVerification(){
   return response;
 }
 
-quantity.addEventListener('change', quantityVerification);
-
+// verification of quantity field
 function quantityVerification(){
   let response = true;
   quantityError.innerHTML = "";
@@ -130,11 +138,13 @@ function quantityVerification(){
   return response;
 }
 
+// loop on my radios field
 for (let index = 0; index < radios.length; index++) {
   const item = radios[index];
   item.addEventListener('click', radioVerification);
 }
 
+// verification of radio check
 function radioVerification(){
   let response = false;
   radioError.innerHTML = "Veuillez sélectionner une valeur";
@@ -152,8 +162,7 @@ function radioVerification(){
   return response;
 }
 
-checkbox1.addEventListener("change", checkboxVerification);
-
+// verification of checkbox field
 function checkboxVerification(){
   let response = false;
   checkboxError.innerHTML = "Veuillez accepter les conditions d'utilisation";
@@ -164,8 +173,7 @@ function checkboxVerification(){
   return response;
 }
 
-birthdate.addEventListener("change", birthdateVerification);
-
+// verification of birthdate field
 function birthdateVerification(){
   let response = false;
   birthdateError.innerHTML = "Veuillez entrer votre date de naissance";
