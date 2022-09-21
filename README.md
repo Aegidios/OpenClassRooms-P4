@@ -1,3 +1,6 @@
 # OpenClassRooms-P4
 
-test test test
+Pour installer le projet.
+
+Placez le projet dans le répertoire souhaité.
+Entrez dans le dossier et ouvrez index.html
