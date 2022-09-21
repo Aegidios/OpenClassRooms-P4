@@ -83,7 +83,7 @@ birthdate.addEventListener("change", birthdateVerification);
 // verification of firstname field
 function firstNameVerification(){
   let response;
-  let filter = /^([a-zA\-])+$/;
+  let filter = /^(?=.{1,50}$)[a-z]+(?:['_.\s][a-z]+)*$/i;
   if(!firstName.validity.valid || firstName.value.length < 2 || !filter.test(firstName.value)){
     /* console.log('Veuillez rentrer au moins 2 caractères'); */
     firstNameError.innerHTML = "Veuillez rentrer au moins 2 caractères";
@@ -99,7 +99,7 @@ function firstNameVerification(){
 // verification of lastname field
 function lastNameVerification(){
   let response = false;
-  let filter = /^([a-zA\-])+$/;
+  let filter = /^(?=.{1,50}$)[a-z]+(?:['_.\s][a-z]+)*$/i;
   lastNameError.innerHTML = "Veuillez rentrer au moins 2 caractères";
   if(lastName.value.length >= 2 && filter.test(lastName.value)){
     
