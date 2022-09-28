@@ -23,6 +23,8 @@ const lastNameError = document.getElementById('lastNameError');
 const emailError = document.getElementById('emailError');
 const birthdateError = document.getElementById('birthdateError');
 const quantityError = document.getElementById('quantityError');
+const radioError = document.getElementById('radioError');
+const checkboxError = document.getElementById('checkboxError');
 const radios = document.querySelectorAll('input[name="location"]');
 const checkbox1 = document.querySelector("#checkbox1");
 const form = document.querySelector('form[name="reserve"]');
@@ -85,14 +87,13 @@ function firstNameVerification(){
   let response;
   let filter = /^(?=.{1,50}$)[a-z]+(?:['_.\s][a-z]+)*$/i;
   if(!firstName.validity.valid || firstName.value.length < 2 || !filter.test(firstName.value)){
-    /* console.log('Veuillez rentrer au moins 2 caractères'); */
     firstNameError.innerHTML = "Veuillez rentrer au moins 2 caractères";
     response = false;
   }else{
     firstNameError.innerHTML = "";
     response = firstName.value;
   }
-  console.log(response);
+
   return response;
 }
 
@@ -106,7 +107,7 @@ function lastNameVerification(){
     lastNameError.innerHTML = "";
     response = lastName.value;
   }
-  console.log(response);
+
   return response;
 }
 
@@ -121,7 +122,7 @@ function emailVerification(){
     emailError.innerHTML = "";
     response = email.value;
   }
-  console.log(email.value);
+
   return response;
 }
 
@@ -129,12 +130,12 @@ function emailVerification(){
 function quantityVerification(){
   let response = true;
   quantityError.innerHTML = "";
-  console.log(quantity.value);
+
   if(!quantity.value){
     quantityError.innerHTML = "Veuillez rentrer une valeur";
     reponse = false;
   }
-  console.log(response);
+
   return response;
 }
 
@@ -153,7 +154,6 @@ function radioVerification(){
     
     if(radio_index.checked){
       response = radio_index.value;
-      console.log(response);
       radioError.innerHTML = "";
       break;
     }
@@ -180,7 +180,6 @@ function birthdateVerification(){
   if(birthdate.value){
     birthdateError.innerHTML = "";
     response = birthdate.value;
-    console.log(response);
   }
   return response;
 }
